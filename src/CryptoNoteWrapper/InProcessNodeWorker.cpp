@@ -20,8 +20,10 @@
 #include <QEventLoop>
 #include <QSemaphore>
 
+#ifdef WIN32
 #include <boost/program_options.hpp>
 #include <boost/any.hpp>
+#endif
 
 #include <functional>
 
