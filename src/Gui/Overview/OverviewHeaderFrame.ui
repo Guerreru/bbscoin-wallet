@@ -393,22 +393,6 @@
           </property>
          </widget>
         </item>
-        <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
-         <widget class="QPushButton" name="m_startMiningButton">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="focusPolicy">
-           <enum>Qt::NoFocus</enum>
-          </property>
-          <property name="text">
-           <string>Start mining</string>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
        </layout>
       </item>
       <item row="3" column="3">
@@ -419,23 +403,6 @@
         <property name="leftMargin">
          <number>0</number>
         </property>
-        <item alignment="Qt::AlignLeft">
-         <widget class="WalletGui::WalletNormalBlackTextLabel" name="m_overviewHashRateLabel">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-         </widget>
-        </item>
-        <item alignment="Qt::AlignLeft">
-         <widget class="QLabel" name="m_miningStateLabel">
-          <property name="text">
-           <string>mining off</string>
-          </property>
-          <property name="indent">
-           <number>0</number>
-          </property>
-         </widget>
-        </item>
        </layout>
       </item>
       <item row="0" column="0" colspan="6">
@@ -716,22 +683,6 @@
     <hint type="destinationlabel">
      <x>533</x>
      <y>73</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>m_startMiningButton</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>OverviewHeaderFrame</receiver>
-   <slot>startMiningClicked(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>579</x>
-     <y>46</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>533</x>
-     <y>77</y>
     </hint>
    </hints>
   </connection>
