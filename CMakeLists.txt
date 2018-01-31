@@ -68,17 +68,23 @@ if (WIN32)
   file(GLOB_RECURSE HEADERS src/*.h)
   file(GLOB_RECURSE FORMS src/gui/ui/*.ui)
 
-  if(WIN32)
-      set(SOURCES ${SOURCES} Platform/Windows/ApplicationEventHandler.cpp)
-      if(MSVC)
-          add_definitions(/D_CRT_SECURE_NO_WARNINGS /D_WIN32_WINNT=0x0600)
-          include_directories(
-              bbscoin/src/Platform/msc
-              bbscoin/src/Platform/Windows
-              Platform/Windows)
-          set(BUILD_PLATFORM WIN32)
-          set(Qt5_MAIN Qt5::WinMain)
-      endif()
+  set(SOURCES ${SOURCES} Platform/Windows/ApplicationEventHandler.cpp)
+
+  set(QRC src/resources.qrc)
+
+  qt5_wrap_ui(UIS ${FORMS})
+  qt5_add_resources(RCC ${QRC})
+
+
+  if(MSVC)
+    add_definitions(/D_CRT_SECURE_NO_WARNINGS /D_WIN32_WINNT=0x0600)
+    include_directories(
+        bbscoin/src/Platform/msc
+        bbscoin/src/Platform/Windows
+        Platform/Windows)
+    set(BUILD_PLATFORM WIN32)
+    set(BUILD_RESOURCES src/bbscoinwallet.rc)
+    set(Qt5_MAIN Qt5::WinMain)
   endif()
 
   # Include boost
@@ -88,7 +94,7 @@ if (WIN32)
       ${Boost_LIBRARY_DIRS}
       ${PROJECT_SOURCE_DIR}/libs)
   # Build BBSCoinWallet.exe
-  add_executable(${PROJECT_NAME} ${BUILD_PLATFORM} ${SOURCES})
+  add_executable(${PROJECT_NAME} ${BUILD_PLATFORM} ${BUILD_RESOURCES} ${SOURCES} ${HEADERS} ${UIS} ${RCC})
   set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_DEFINITIONS _GNU_SOURCE)
   target_compile_definitions(${PROJECT_NAME} PUBLIC -DGIT_REVISION="${GIT_REVISION}")
   target_include_directories(${PROJECT_NAME} PUBLIC
