@@ -67,11 +67,6 @@
        <string>Donations</string>
       </attribute>
      </widget>
-     <widget class="WalletGui::PrivacyFrame" name="m_privacyTab">
-      <attribute name="title">
-       <string>Privacy</string>
-      </attribute>
-     </widget>
     </widget>
    </item>
    <item>
@@ -183,12 +178,6 @@
    <class>WalletGui::DonationOptionsFrame</class>
    <extends>QWidget</extends>
    <header>Gui/Options/DonationOptionsFrame.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>WalletGui::PrivacyFrame</class>
-   <extends>QWidget</extends>
-   <header>Gui/Options/PrivacyFrame.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

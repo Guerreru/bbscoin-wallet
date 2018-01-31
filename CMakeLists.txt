@@ -8,7 +8,7 @@ WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 OUTPUT_VARIABLE GIT_REVISION)
 
 set(CRYPTONOTE_LIB cryptonote)
-set(STATIC True CACHE BOOL "Link libraries statically")
+set(STATIC ON)
 
 include_directories(${CMAKE_BINARY_DIR}
   src
@@ -123,6 +123,7 @@ file(GLOB_RECURSE CRYPTONOTE_SOURCES
   cryptonote/src/WalletLegacy/WalletUnconfirmedTransactions.cpp
   cryptonote/src/WalletLegacy/WalletUserTransactionsCache.cpp
   cryptonote/src/System/ContextGroup.cpp
+  cryptonote/src/System/ContextGroupTimeout.cpp
   cryptonote/src/System/Event.cpp
   cryptonote/src/System/EventLock.cpp
   cryptonote/src/System/InterruptedException.cpp
@@ -144,7 +145,9 @@ if(MSVC)
 elseif(APPLE)
   include_directories(Platform/OSX)
   include_directories(Platform/Posix)
-  set(SOURCES ${SOURCES} ${CMAKE_SOURCE_DIR}/Platform/OSX/*)
+  set(SOURCES ${SOURCES} ${CMAKE_SOURCE_DIR}/Platform/OSX/ApplicationEventHandler.mm)
+  set(SOURCES ${SOURCES} ${CMAKE_SOURCE_DIR}/Platform/OSX/NotificationMonitor.mm)
+  set(SOURCES ${SOURCES} ${CMAKE_SOURCE_DIR}/Platform/OSX/WalletApplication.mm)
   set(SOURCES ${SOURCES} ${CMAKE_SOURCE_DIR}/Platform/Posix/System/MemoryMappedFile.cpp)
 else()
   include_directories(Platform/Linux)
@@ -176,7 +179,7 @@ if (WIN32)
 
   set(PLATFORM_DIR Windows)
   set(BUILD_PLATFORM WIN32)
-  set(BUILD_RESOURCES src/dotoricoinwallet.rc)
+  set(BUILD_RESOURCES src/bbscoinwallet.rc)
   set(QTMAIN Qt5::WinMain)
 
 elseif (UNIX)

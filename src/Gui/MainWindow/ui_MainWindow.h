@@ -48,7 +48,7 @@ public:
     QAction *m_openWalletAction;
     QAction *m_encryptWalletAction;
     QAction *m_changePasswordAction;
-    QAction *m_aboutDotoriCoinAction;
+    QAction *m_aboutBBSCoinAction;
     QAction *m_aboutQtAction;
     QAction *m_backupWalletAction;
     QAction *m_autostartAction;
@@ -140,7 +140,7 @@ public:
         MainWindow->setMinimumSize(QSize(1260, 600));
         MainWindow->setMaximumSize(QSize(16777215, 16777215));
         QIcon icon;
-        icon.addFile(QStringLiteral(":/images/dotoricoin"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral(":/images/bbscoin"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
         m_exitAction = new QAction(MainWindow);
         m_exitAction->setObjectName(QStringLiteral("m_exitAction"));
@@ -158,9 +158,9 @@ public:
         m_changePasswordAction = new QAction(MainWindow);
         m_changePasswordAction->setObjectName(QStringLiteral("m_changePasswordAction"));
         m_changePasswordAction->setEnabled(true);
-        m_aboutDotoriCoinAction = new QAction(MainWindow);
-        m_aboutDotoriCoinAction->setObjectName(QStringLiteral("m_aboutDotoriCoinAction"));
-        m_aboutDotoriCoinAction->setEnabled(true);
+        m_aboutBBSCoinAction = new QAction(MainWindow);
+        m_aboutBBSCoinAction->setObjectName(QStringLiteral("m_aboutBBSCoinAction"));
+        m_aboutBBSCoinAction->setEnabled(true);
         m_aboutQtAction = new QAction(MainWindow);
         m_aboutQtAction->setObjectName(QStringLiteral("m_aboutQtAction"));
         m_aboutQtAction->setEnabled(true);
@@ -580,7 +580,7 @@ public:
         menuSettings->addAction(menuThemes->menuAction());
         menuHelp->addAction(m_communityForumAction);
         menuHelp->addAction(m_reportIssueAction);
-        menuHelp->addAction(m_aboutDotoriCoinAction);
+        menuHelp->addAction(m_aboutBBSCoinAction);
         menuHelp->addAction(m_aboutQtAction);
 
         retranslateUi(MainWindow);
@@ -590,7 +590,7 @@ public:
         QObject::connect(m_changePasswordAction, SIGNAL(triggered()), MainWindow, SLOT(encryptWallet()));
         QObject::connect(m_aboutQtAction, SIGNAL(triggered()), MainWindow, SLOT(aboutQt()));
         QObject::connect(m_backupWalletAction, SIGNAL(triggered()), MainWindow, SLOT(backupWallet()));
-        QObject::connect(m_aboutDotoriCoinAction, SIGNAL(triggered()), MainWindow, SLOT(about()));
+        QObject::connect(m_aboutBBSCoinAction, SIGNAL(triggered()), MainWindow, SLOT(about()));
         QObject::connect(m_overviewButton, SIGNAL(toggled(bool)), m_overviewFrame, SLOT(setVisible(bool)));
         QObject::connect(m_transactionsButton, SIGNAL(toggled(bool)), m_transactionsFrame, SLOT(setVisible(bool)));
         QObject::connect(m_addressBookButton, SIGNAL(toggled(bool)), m_addressBookFrame, SLOT(setVisible(bool)));
@@ -626,7 +626,7 @@ public:
 #ifndef QT_NO_TOOLTIP
         m_changePasswordAction->setToolTip(QApplication::translate("MainWindow", "Change password", 0));
 #endif // QT_NO_TOOLTIP
-        m_aboutDotoriCoinAction->setText(QApplication::translate("MainWindow", "About DotoriCoin", 0));
+        m_aboutBBSCoinAction->setText(QApplication::translate("MainWindow", "About BBSCoin", 0));
         m_aboutQtAction->setText(QApplication::translate("MainWindow", "About Qt", 0));
         m_backupWalletAction->setText(QApplication::translate("MainWindow", "Backup wallet", 0));
         m_autostartAction->setText(QApplication::translate("MainWindow", "Start on system login", 0));
@@ -670,7 +670,7 @@ public:
         m_balanceCopyLabel->setText(QApplication::translate("MainWindow", "Copied!", 0));
         m_balanceIconLabel->setText(QString());
         m_overviewButton->setText(QApplication::translate("MainWindow", "OVERVIEW", 0));
-        m_sendButton->setText(QApplication::translate("MainWindow", "SEND DOTORICOIN", 0));
+        m_sendButton->setText(QApplication::translate("MainWindow", "SEND BBSCOIN", 0));
         m_transactionsButton->setText(QApplication::translate("MainWindow", "TRANSACTIONS", 0));
         m_blockExplorerButton->setText(QApplication::translate("MainWindow", "BLOCK EXPLORER", 0));
         m_addressBookButton->setText(QApplication::translate("MainWindow", "CONTACTS", 0));

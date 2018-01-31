@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=BBSCoin Wallet
+Comment=BBSCoin wallet
+Exec=bbscoinwallet %U
+Terminal=false
+Type=Application
+Icon=bbscoin
+MimeType=x-scheme-handler/bbscoin;
+Categories=Office;Finance;
