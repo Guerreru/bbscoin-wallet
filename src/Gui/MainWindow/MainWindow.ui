@@ -33,7 +33,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>:/images/dotoricoin</normaloff>:/images/dotoricoin</iconset>
+    <normaloff>:/images/bbscoin</normaloff>:/images/bbscoin</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -620,7 +620,7 @@
             <enum>Qt::NoFocus</enum>
            </property>
            <property name="text">
-            <string>SEND DOTORICOIN</string>
+            <string>SEND BBSCOIN</string>
            </property>
            <property name="checkable">
             <bool>true</bool>
@@ -861,7 +861,7 @@
     </property>
     <addaction name="m_communityForumAction"/>
     <addaction name="m_reportIssueAction"/>
-    <addaction name="m_aboutDotoriCoinAction"/>
+    <addaction name="m_aboutBBSCoinAction"/>
     <addaction name="m_aboutQtAction"/>
    </widget>
    <addaction name="menuFile"/>
@@ -918,12 +918,12 @@
     <string>Change password</string>
    </property>
   </action>
-  <action name="m_aboutDotoriCoinAction">
+  <action name="m_aboutBBSCoinAction">
    <property name="enabled">
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>About DotoriCoin</string>
+    <string>About BBSCoin</string>
    </property>
   </action>
   <action name="m_aboutQtAction">
@@ -1191,7 +1191,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>m_aboutDotoriCoinAction</sender>
+   <sender>m_aboutBBSCoinAction</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>about()</slot>

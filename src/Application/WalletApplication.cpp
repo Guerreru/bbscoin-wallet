@@ -36,7 +36,6 @@
 #include "WalletApplication.h"
 #include "AddressBookManager.h"
 #include "ApplicationEventHandler.h"
-#include "BlogReader.h"
 #include "CommandLineParser.h"
 #include "Gui/Common/ExitWidget.h"
 #include "Gui/Common/P2pBindPortErrorDialog.h"
@@ -106,7 +105,7 @@ bool rmDir(const QString& dirPath) {
 
 WalletApplication::WalletApplication(int& _argc, char** _argv) : QApplication(_argc, _argv), m_lockFile(nullptr),
   m_systemTrayIcon(new QSystemTrayIcon(this)), m_applicationEventHandler(new ApplicationEventHandler(this)),
-  m_optimizationManager(nullptr), m_blogReader(new BlogReader(this)), m_mainWindow(nullptr), m_splash(nullptr),
+  m_optimizationManager(nullptr), m_mainWindow(nullptr), m_splash(nullptr),
   m_logWatcher(nullptr), m_isAboutToQuit(false) {
   setApplicationName("bytecoinwallet");
   setApplicationVersion(Settings::instance().getVersion());
@@ -165,9 +164,6 @@ bool WalletApplication::init() {
   }
 
   m_applicationEventHandler->init();
-  if (Settings::instance().isNewsEnabled()) {
-    m_blogReader->init();
-  }
 
   SignalHandler::instance().init();
   QObject::connect(&SignalHandler::instance(), &SignalHandler::quitSignal, this, &WalletApplication::quit);
@@ -198,14 +194,6 @@ void WalletApplication::dockClickHandler() {
     m_splash->show();
   } else if (m_mainWindow != nullptr) {
     m_mainWindow->show();
-  }
-}
-
-void WalletApplication::settingsUpdated() {
-  if (Settings::instance().isNewsEnabled()) {
-    m_blogReader->init();
-  } else {
-    m_blogReader->deinit();
   }
 }
 
@@ -354,7 +342,7 @@ void WalletApplication::initUi() {
   styleSheetFile.close();
   setStyleSheet(Settings::instance().getCurrentStyle().makeStyleSheet(styleSheet));
   m_mainWindow = new MainWindow(m_cryptoNoteAdapter, m_addressBookManager, m_donationManager, m_optimizationManager,
-    m_miningManager, m_applicationEventHandler, m_blogReader, styleSheet, nullptr);
+    m_miningManager, m_applicationEventHandler, styleSheet, nullptr);
   connect(static_cast<MainWindow*>(m_mainWindow), &MainWindow::reinitCryptoNoteAdapterSignal,
     this, &WalletApplication::reinitCryptoNoteAdapter);
   if (m_splash != nullptr) {
@@ -420,12 +408,11 @@ void WalletApplication::trayActivated(QSystemTrayIcon::ActivationReason _reason)
   }
 }
 
+void WalletApplication::settingsUpdated() {
+}
+
 void WalletApplication::prepareToQuit() {
   WalletLogger::debug(tr("[Application] Prepare to quit..."));
-  if (Settings::instance().isNewsEnabled()) {
-    m_blogReader->deinit();
-  }
-
   Settings::instance().removeObserver(this);
   m_isAboutToQuit = true;
   m_systemTrayIcon->hide();

@@ -1,4 +1,4 @@
-// Copyright (c) 2015-2017, The Bytecoin developers, The DotoriCoin developers
+// Copyright (c) 2015-2017, The Bytecoin, DotoriCoin, BBSCoin developers
 //
 // This file is part of Bytecoin.
 //

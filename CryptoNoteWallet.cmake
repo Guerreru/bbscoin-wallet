@@ -1,4 +1,4 @@
-set(CN_PROJECT_NAME "dotoriwallet")
-set(CN_CURRENCY_DISPLAY_NAME "DotoriCoin")
-set(CN_CURRENCY_TICKER "DTO")
+set(CN_PROJECT_NAME "bbscoinwallet")
+set(CN_CURRENCY_DISPLAY_NAME "BBSCoin")
+set(CN_CURRENCY_TICKER "BBS")
 set(CN_VERSION 1.0.0)
