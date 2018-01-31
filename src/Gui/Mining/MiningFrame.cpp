@@ -170,9 +170,7 @@ void MiningFrame::donationManagerOpened() {
 }
 
 void MiningFrame::donationManagerClosed() {
-  if (m_ui->m_startMiningButton->isChecked()) {
-    m_ui->m_startMiningButton->click();
-  }
+
 }
 
 void MiningFrame::donationMiningEnabled(bool _on) {
@@ -223,26 +221,12 @@ void MiningFrame::miningStarted() {
   m_ui->m_cpuCoresCombo->setEnabled(false);
   m_ui->m_failoverStrategyRadio->setEnabled(false);
   m_ui->m_randomStrategyRadio->setEnabled(false);
-  if (!m_ui->m_startMiningButton->isChecked()) {
-    m_ui->m_startMiningButton->setChecked(true);
-    m_ui->m_startMiningButton->setText(tr("Stop"));
-    m_ui->m_startMiningButton->setFixedWidth(50);
-    m_ui->m_hashrateLabel->setText("0 H/s");
-    m_ui->m_donationHashRateLabel->setText("0 H/s");
-    m_ui->m_hashRateFrame->setVisible(true);
-  }
 }
 
 void MiningFrame::miningStopped() {
   m_ui->m_cpuCoresCombo->setEnabled(true);
   m_ui->m_failoverStrategyRadio->setEnabled(true);
   m_ui->m_randomStrategyRadio->setEnabled(true);
-  if (m_ui->m_startMiningButton->isChecked()) {
-    m_ui->m_startMiningButton->setChecked(false);
-    m_ui->m_startMiningButton->setText(tr("Start mining"));
-    m_ui->m_startMiningButton->setFixedWidth(190);
-    m_ui->m_hashRateFrame->setVisible(false);
-  }
 }
 
 void MiningFrame::activeMinerChanged(quintptr _minerIndex) {
@@ -312,15 +296,11 @@ void MiningFrame::urlReceived(const QUrl& _url) {
 }
 
 void MiningFrame::screenLocked() {
-  if (m_ui->m_lockedScreenMiningCheck->isChecked() && !m_ui->m_startMiningButton->isChecked()) {
-    m_ui->m_startMiningButton->click();
-  }
+
 }
 
 void MiningFrame::screenUnlocked() {
-  if (m_ui->m_lockedScreenMiningCheck->isChecked() && m_ui->m_startMiningButton->isChecked()) {
-    m_ui->m_startMiningButton->click();
-  }
+
 }
 
 void MiningFrame::resizeEvent(QResizeEvent* _event) {
@@ -415,19 +395,7 @@ void MiningFrame::schedulePolicyChanged(QAbstractButton* _button, bool _checked)
 }
 
 void MiningFrame::startMiningClicked(bool _on) {
-   if (_on) {
-     m_ui->m_startMiningButton->setText(tr("Stop"));
-     m_ui->m_startMiningButton->setFixedWidth(50);
-     m_ui->m_hashrateLabel->setText("0 H/s");
-     m_ui->m_donationHashRateLabel->setText("0 H/s");
-     startMining();
-   } else {
-     m_ui->m_startMiningButton->setText(tr("Start mining"));
-     m_ui->m_startMiningButton->setFixedWidth(190);
-     stopMining();
-   }
 
-   m_ui->m_hashRateFrame->setVisible(_on);
 }
 
 }

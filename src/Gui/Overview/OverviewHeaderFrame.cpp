@@ -82,34 +82,6 @@ const char OVERVIEW_HEADER_STYLE_SHEET_TEMPLATE[] =
     "margin-top: 3px;"
   "}"
 
-  "WalletGui--OverviewHeaderFrame #m_startMiningButton {"
-    "min-width: 97px;"
-    "max-width: 97px;"
-    "min-height: 23px;"
-    "max-height: 23px;"
-    "border: 1px solid %backgroundColorGreen%;"
-    "background-color: %backgroundColorGreen%;"
-    "color: #ffffff;"
-    "image: url(:icons/start-mining);"
-    "image-position: left;"
-    "padding-left: 7px;"
-  "}"
-
-  "WalletGui--OverviewHeaderFrame #m_startMiningButton:hover {"
-    "background-color: %backgroundColorGreenHover%;"
-  "}"
-
-  "WalletGui--OverviewHeaderFrame #m_startMiningButton:checked {"
-    "border: 1px solid %borderColor%;"
-    "background-color: %backgroundColorGray%;"
-    "color: %fontColorGray%;"
-    "image: url(:icons/stop-mining);"
-  "}"
-
-  "WalletGui--OverviewHeaderFrame #m_startMiningButton:checked:hover {"
-    "background-color: %backgroundButtonColorGrayHover%;"
-  "}"
-
   "WalletGui--OverviewHeaderFrame #m_miningStateLabel {"
     "font-size: %fontSizeTiny%;"
     "color: %fontColorRed%;"
@@ -203,13 +175,6 @@ void OverviewHeaderFrame::setTransactionPoolModel(QAbstractItemModel* _model) {
 }
 
 void OverviewHeaderFrame::setMinerModel(QAbstractItemModel *_model) {
-  m_miningMapper->setModel(_model);
-  m_miningMapper->addMapping(m_ui->m_overviewHashRateLabel, MinerModel::COLUMN_HASHRATE, "text");
-  if (_model->rowCount() > 0) {
-    m_miningMapper->setCurrentIndex(0);
-  } else {
-    m_ui->m_overviewHashRateLabel->setText("0 H/s");
-  }
 }
 
 void OverviewHeaderFrame::cryptoNoteAdapterInitCompleted(int _status) {
@@ -229,25 +194,9 @@ void OverviewHeaderFrame::minersUnloaded() {
 }
 
 void OverviewHeaderFrame::miningStarted() {
-  if (!m_ui->m_startMiningButton->isChecked()) {
-    m_ui->m_startMiningButton->setChecked(true);
-    m_ui->m_startMiningButton->setText(tr("Stop mining"));
-    m_ui->m_miningStateLabel->setText(tr("mining on"));
-    m_ui->m_miningStateLabel->setProperty("miningRunning", true);
-    m_ui->m_miningStateLabel->style()->unpolish(m_ui->m_miningStateLabel);
-    m_ui->m_miningStateLabel->style()->polish(m_ui->m_miningStateLabel);
-  }
 }
 
 void OverviewHeaderFrame::miningStopped() {
-  if (m_ui->m_startMiningButton->isChecked()) {
-    m_ui->m_startMiningButton->setChecked(false);
-    m_ui->m_startMiningButton->setText(tr("Start mining"));
-    m_ui->m_miningStateLabel->setText(tr("mining off"));
-    m_ui->m_miningStateLabel->setProperty("miningRunning", false);
-    m_ui->m_miningStateLabel->style()->unpolish(m_ui->m_miningStateLabel);
-    m_ui->m_miningStateLabel->style()->polish(m_ui->m_miningStateLabel);
-  }
 }
 
 void OverviewHeaderFrame::activeMinerChanged(quintptr _minerIndex) {
@@ -360,20 +309,6 @@ void OverviewHeaderFrame::poolTransactionClicked(const QModelIndex& _index) {
 }
 
 void OverviewHeaderFrame::startMiningClicked(bool _on) {
-   if (_on) {
-     m_ui->m_startMiningButton->setText(tr("Stop mining"));
-     m_ui->m_miningStateLabel->setText(tr("mining on"));
-     m_ui->m_miningStateLabel->setProperty("miningRunning", true);
-     m_miningManager->startMining();
-   } else {
-     m_ui->m_startMiningButton->setText(tr("Start mining"));
-     m_ui->m_miningStateLabel->setText(tr("mining off"));
-     m_ui->m_miningStateLabel->setProperty("miningRunning", false);
-     m_miningManager->stopMining();
-   }
-
-   m_ui->m_miningStateLabel->style()->unpolish(m_ui->m_miningStateLabel);
-   m_ui->m_miningStateLabel->style()->polish(m_ui->m_miningStateLabel);
 }
 
 }

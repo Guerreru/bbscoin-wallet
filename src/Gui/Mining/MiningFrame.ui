@@ -278,28 +278,6 @@
         </property>
        </spacer>
       </item>
-      <item>
-       <widget class="WalletGui::WalletNormalBlueButton" name="m_startMiningButton">
-        <property name="minimumSize">
-         <size>
-          <width>190</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>190</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Start mining</string>
-        </property>
-        <property name="checkable">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </item>
@@ -560,22 +538,6 @@
     <hint type="destinationlabel">
      <x>408</x>
      <y>248</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>m_startMiningButton</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>MiningFrame</receiver>
-   <slot>startMiningClicked(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1012</x>
-     <y>97</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>566</x>
-     <y>262</y>
     </hint>
    </hints>
   </connection>

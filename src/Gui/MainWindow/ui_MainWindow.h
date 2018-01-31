@@ -109,7 +109,6 @@ public:
     QPushButton *m_transactionsButton;
     QPushButton *m_blockExplorerButton;
     QPushButton *m_addressBookButton;
-    QPushButton *m_miningButton;
     QSpacerItem *verticalSpacer;
     WalletGui::OverviewFrame *m_overviewFrame;
     WalletGui::SendFrame *m_sendFrame;
@@ -464,14 +463,6 @@ public:
 
         verticalLayout->addWidget(m_addressBookButton);
 
-        m_miningButton = new QPushButton(m_toolFrame);
-        m_toolButtonGroup->addButton(m_miningButton);
-        m_miningButton->setObjectName(QStringLiteral("m_miningButton"));
-        m_miningButton->setFocusPolicy(Qt::NoFocus);
-        m_miningButton->setCheckable(true);
-
-        verticalLayout->addWidget(m_miningButton);
-
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout->addItem(verticalSpacer);
@@ -602,7 +593,6 @@ public:
         QObject::connect(m_encryptButton, SIGNAL(clicked()), m_encryptWalletAction, SLOT(trigger()));
         QObject::connect(m_preferencesAction, SIGNAL(triggered()), MainWindow, SLOT(showPreferences()));
         QObject::connect(m_blockExplorerButton, SIGNAL(toggled(bool)), m_blockExplorerFrame, SLOT(setVisible(bool)));
-        QObject::connect(m_miningButton, SIGNAL(toggled(bool)), m_miningFrame, SLOT(setVisible(bool)));
         QObject::connect(m_exportTrackingKeyAction, SIGNAL(triggered()), MainWindow, SLOT(exportTrackingKey()));
         QObject::connect(m_importKeyAction, SIGNAL(triggered()), MainWindow, SLOT(importKey()));
         QObject::connect(m_communityForumAction, SIGNAL(triggered()), MainWindow, SLOT(communityForumTriggered()));
@@ -674,7 +664,6 @@ public:
         m_transactionsButton->setText(QApplication::translate("MainWindow", "TRANSACTIONS", 0));
         m_blockExplorerButton->setText(QApplication::translate("MainWindow", "BLOCK EXPLORER", 0));
         m_addressBookButton->setText(QApplication::translate("MainWindow", "CONTACTS", 0));
-        m_miningButton->setText(QApplication::translate("MainWindow", "MINING", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
         menuSettings->setTitle(QApplication::translate("MainWindow", "Settings", 0));
         menuThemes->setTitle(QApplication::translate("MainWindow", "Themes", 0));

@@ -57,16 +57,6 @@
        <string>Connection</string>
       </attribute>
      </widget>
-     <widget class="WalletGui::OptimizationOptionsFrame" name="m_optimizationTab">
-      <attribute name="title">
-       <string>Wallet optimization</string>
-      </attribute>
-     </widget>
-     <widget class="WalletGui::DonationOptionsFrame" name="m_donationTab">
-      <attribute name="title">
-       <string>Donations</string>
-      </attribute>
-     </widget>
     </widget>
    </item>
    <item>

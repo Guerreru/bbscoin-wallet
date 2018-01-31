@@ -691,25 +691,6 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="m_miningButton">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
-           </property>
-           <property name="text">
-            <string>MINING</string>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-           <attribute name="buttonGroup">
-            <string notr="true">m_toolButtonGroup</string>
-           </attribute>
-          </widget>
-         </item>
-         <item>
           <spacer name="verticalSpacer">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
@@ -777,16 +758,6 @@
       </item>
       <item>
        <widget class="WalletGui::BlockExplorerFrame" name="m_blockExplorerFrame">
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="WalletGui::MiningFrame" name="m_miningFrame">
         <property name="frameShape">
          <enum>QFrame::NoFrame</enum>
         </property>

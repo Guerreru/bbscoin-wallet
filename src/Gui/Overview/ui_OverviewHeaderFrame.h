@@ -53,18 +53,13 @@ public:
     QSpacerItem *verticalSpacer_8;
     QFrame *m_overviewMiningFrame;
     QGridLayout *gridLayout_2;
-    WalletGui::WalletSmallBlackTextLabel *label_3;
     QSpacerItem *verticalSpacer_4;
     WalletGui::WalletNormalBlackTextLabel *m_overviewNetworkDifficultyLabel;
     QSpacerItem *horizontalSpacer_5;
     WalletGui::WalletSmallBlackTextLabel *label_7;
     QLabel *m_overviewMiningIconLabel;
     QHBoxLayout *horizontalLayout_2;
-    WalletGui::WalletHeaderLabel *m_miningStatusTextLabel;
-    QPushButton *m_startMiningButton;
     QHBoxLayout *horizontalLayout_3;
-    WalletGui::WalletNormalBlackTextLabel *m_overviewHashRateLabel;
-    QLabel *m_miningStateLabel;
     QSpacerItem *verticalSpacer_3;
     QSpacerItem *horizontalSpacer_2;
     WalletGui::WalletNormalBlackTextLabel *m_overviewNetworkHashrateLabel;
@@ -220,11 +215,6 @@ public:
         gridLayout_2->setSpacing(5);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         gridLayout_2->setContentsMargins(30, 25, -1, 15);
-        label_3 = new WalletGui::WalletSmallBlackTextLabel(m_overviewMiningFrame);
-        label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setIndent(0);
-
-        gridLayout_2->addWidget(label_3, 3, 2, 1, 1);
 
         verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -254,18 +244,6 @@ public:
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(10);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        m_miningStatusTextLabel = new WalletGui::WalletHeaderLabel(m_overviewMiningFrame);
-        m_miningStatusTextLabel->setObjectName(QStringLiteral("m_miningStatusTextLabel"));
-        m_miningStatusTextLabel->setIndent(0);
-
-        horizontalLayout_2->addWidget(m_miningStatusTextLabel, 0, Qt::AlignVCenter);
-
-        m_startMiningButton = new QPushButton(m_overviewMiningFrame);
-        m_startMiningButton->setObjectName(QStringLiteral("m_startMiningButton"));
-        m_startMiningButton->setFocusPolicy(Qt::NoFocus);
-        m_startMiningButton->setCheckable(true);
-
-        horizontalLayout_2->addWidget(m_startMiningButton, 0, Qt::AlignLeft|Qt::AlignVCenter);
 
         horizontalLayout_2->setStretch(1, 1);
 
@@ -275,16 +253,6 @@ public:
         horizontalLayout_3->setSpacing(20);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         horizontalLayout_3->setContentsMargins(0, -1, -1, -1);
-        m_overviewHashRateLabel = new WalletGui::WalletNormalBlackTextLabel(m_overviewMiningFrame);
-        m_overviewHashRateLabel->setObjectName(QStringLiteral("m_overviewHashRateLabel"));
-
-        horizontalLayout_3->addWidget(m_overviewHashRateLabel, 0, Qt::AlignLeft);
-
-        m_miningStateLabel = new QLabel(m_overviewMiningFrame);
-        m_miningStateLabel->setObjectName(QStringLiteral("m_miningStateLabel"));
-        m_miningStateLabel->setIndent(0);
-
-        horizontalLayout_3->addWidget(m_miningStateLabel, 0, Qt::AlignLeft);
 
         horizontalLayout_3->setStretch(1, 1);
 
@@ -382,7 +350,6 @@ public:
 
         retranslateUi(OverviewHeaderFrame);
         QObject::connect(m_overviewTransactionPoolView, SIGNAL(doubleClicked(QModelIndex)), OverviewHeaderFrame, SLOT(poolTransactionClicked(QModelIndex)));
-        QObject::connect(m_startMiningButton, SIGNAL(clicked(bool)), OverviewHeaderFrame, SLOT(startMiningClicked(bool)));
 
         QMetaObject::connectSlotsByName(OverviewHeaderFrame);
     } // setupUi
@@ -413,14 +380,9 @@ public:
         m_availableBalanceCopyLabel->setText(QApplication::translate("OverviewHeaderFrame", "Copied!", 0));
         m_lockedBalanceCopyLabel->setText(QApplication::translate("OverviewHeaderFrame", "Copied!", 0));
         m_totalBalanceCopyLabel->setText(QApplication::translate("OverviewHeaderFrame", "Copied!", 0));
-        label_3->setText(QApplication::translate("OverviewHeaderFrame", "Your", 0));
         m_overviewNetworkDifficultyLabel->setText(QApplication::translate("OverviewHeaderFrame", "TextLabel", 0));
         label_7->setText(QApplication::translate("OverviewHeaderFrame", "Difficulty", 0));
         m_overviewMiningIconLabel->setText(QString());
-        m_miningStatusTextLabel->setText(QApplication::translate("OverviewHeaderFrame", "Mining status", 0));
-        m_startMiningButton->setText(QApplication::translate("OverviewHeaderFrame", "Start mining", 0));
-        m_overviewHashRateLabel->setText(QApplication::translate("OverviewHeaderFrame", "TextLabel", 0));
-        m_miningStateLabel->setText(QApplication::translate("OverviewHeaderFrame", "mining off", 0));
         m_overviewNetworkHashrateLabel->setText(QApplication::translate("OverviewHeaderFrame", "TextLabel", 0));
         label_5->setText(QApplication::translate("OverviewHeaderFrame", "Network", 0));
         m_overviewPoolSizeLabel->setText(QApplication::translate("OverviewHeaderFrame", "0 transactions", 0));

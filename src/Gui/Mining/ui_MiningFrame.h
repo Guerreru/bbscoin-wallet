@@ -54,7 +54,6 @@ public:
     WalletGui::WalletHeaderLabel *label_7;
     QSpacerItem *verticalSpacer_2;
     QSpacerItem *horizontalSpacer_3;
-    WalletGui::WalletNormalBlueButton *m_startMiningButton;
     QHBoxLayout *horizontalLayout_2;
     WalletGui::WalletHeaderLabel *label_6;
     QSpacerItem *horizontalSpacer_5;
@@ -184,15 +183,6 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer_3);
 
-        m_startMiningButton = new WalletGui::WalletNormalBlueButton(m_miningManageFrame);
-        m_startMiningButton->setObjectName(QStringLiteral("m_startMiningButton"));
-        m_startMiningButton->setMinimumSize(QSize(190, 0));
-        m_startMiningButton->setMaximumSize(QSize(190, 16777215));
-        m_startMiningButton->setCheckable(true);
-
-        horizontalLayout->addWidget(m_startMiningButton);
-
-
         verticalLayout->addWidget(m_miningManageFrame);
 
         horizontalLayout_2 = new QHBoxLayout();
@@ -296,7 +286,6 @@ public:
 
         retranslateUi(MiningFrame);
         QObject::connect(m_poolSelectionStrategyButtonGroup, SIGNAL(buttonToggled(QAbstractButton*,bool)), MiningFrame, SLOT(schedulePolicyChanged(QAbstractButton*,bool)));
-        QObject::connect(m_startMiningButton, SIGNAL(clicked(bool)), MiningFrame, SLOT(startMiningClicked(bool)));
         QObject::connect(m_newPoolHostEdit, SIGNAL(textChanged(QString)), MiningFrame, SLOT(newPoolUrlChanged()));
         QObject::connect(m_newPoolPortSpin, SIGNAL(valueChanged(int)), MiningFrame, SLOT(newPoolUrlChanged()));
         QObject::connect(m_addPoolButton, SIGNAL(clicked()), MiningFrame, SLOT(addPoolClicked()));
@@ -325,7 +314,6 @@ public:
         m_donationHashRateLabel->setText(QString());
         m_hashrateLabel->setText(QString());
         label_7->setText(QApplication::translate("MiningFrame", "Hashrate:", 0));
-        m_startMiningButton->setText(QApplication::translate("MiningFrame", "Start mining", 0));
         label_6->setText(QApplication::translate("MiningFrame", "Mining pool list", 0));
         label_3->setText(QApplication::translate("MiningFrame", "HOST", 0));
         label_4->setText(QApplication::translate("MiningFrame", "PORT", 0));

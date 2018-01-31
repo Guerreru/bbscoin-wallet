@@ -37,7 +37,6 @@ public:
     QTabWidget *m_optionsTabWidget;
     WalletGui::ConnectionOptionsFrame *m_connectionTab;
     WalletGui::OptimizationOptionsFrame *m_optimizationTab;
-    WalletGui::DonationOptionsFrame *m_donationTab;
     QFrame *m_buttonFrame;
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer_6;
@@ -70,9 +69,6 @@ public:
         m_optimizationTab = new WalletGui::OptimizationOptionsFrame();
         m_optimizationTab->setObjectName(QStringLiteral("m_optimizationTab"));
         m_optionsTabWidget->addTab(m_optimizationTab, QString());
-        m_donationTab = new WalletGui::DonationOptionsFrame();
-        m_donationTab->setObjectName(QStringLiteral("m_donationTab"));
-        m_optionsTabWidget->addTab(m_donationTab, QString());
 
         verticalLayout->addWidget(m_optionsTabWidget);
 
@@ -127,7 +123,6 @@ public:
         OptionsDialog->setWindowTitle(QApplication::translate("OptionsDialog", "Preferences", 0));
         m_optionsTabWidget->setTabText(m_optionsTabWidget->indexOf(m_connectionTab), QApplication::translate("OptionsDialog", "Connection", 0));
         m_optionsTabWidget->setTabText(m_optionsTabWidget->indexOf(m_optimizationTab), QApplication::translate("OptionsDialog", "Wallet optimization", 0));
-        m_optionsTabWidget->setTabText(m_optionsTabWidget->indexOf(m_donationTab), QApplication::translate("OptionsDialog", "Donations", 0));
         m_warningLabel->setText(QApplication::translate("OptionsDialog", "Attention! Restart application to apply changes.", 0));
         m_cancelButton->setText(QApplication::translate("OptionsDialog", "Cancel", 0));
         m_okButton->setText(QApplication::translate("OptionsDialog", "Save", 0));

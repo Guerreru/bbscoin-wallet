@@ -1,9 +1,15 @@
-## Build: Ubuntu 16.04 LTS
-- `sudo apt-get update && sudo apt-get upgrade --yes`
-- `git clone https://github.com/bbscoin/bbscoun-wallet`
-- `git clone https://github.com/bbscoin/bbscoin`
-- `cd bbscoin`
-- `ln -s ../bbscoin/ cryptonote`
-- `mkdir build && cd build`
-- `cmake ..`
-- `make`
+## OSX
+```
+brew install qt5
+mkdir build && cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt/5.10.0_1
+make
+```
+
+## Ubuntu
+```
+ln -s ../bbscoin/ cryptonote
+mkdir build && cd build
+cmake ..
+make
+```
