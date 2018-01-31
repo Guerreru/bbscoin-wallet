@@ -13,3 +13,12 @@ mkdir build && cd build
 cmake ..
 make
 ```
+
+## Windows
+
+You should compile the BBSCoin dynamic libs without rocksdb first, comment "add_subdirectory(tests)" line in bbscoin/CMakeLists.txt, and compile the packages/rocksdb-rocksdb-4.11.2.zip dynamic libs.
+Then copy these files to the libs dir.
+
+Finally, use CMake and VS compile this project.
+
+
