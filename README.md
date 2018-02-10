@@ -27,4 +27,12 @@ Then copy these files to the libs dir.
 
 Finally, use CMake and VS compile this project.
 
+## Windows Pre-built
 
+Following dependencies need to be installed before running the wallet:
+
+Windows binary require VC2017 runtime.
+Download from https://aka.ms/vs/15/release/vc_redist.x64.exe
+
+Universal C Runtime
+https://support.microsoft.com/en-us/help/2999226/update-for-universal-c-runtime-in-windows
