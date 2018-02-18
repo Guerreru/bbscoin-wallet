@@ -13,3 +13,26 @@ mkdir build && cd build
 cmake ..
 make
 ```
+
+## Windows
+
+Clone the bbscoin first,
+
+```
+git clone https://github.com/bbscoin/bbscoin.git bbscoin
+```
+
+Now, you should compile the BBSCoin dynamic libs without rocksdb first, comment "add_subdirectory(tests)" line in bbscoin/CMakeLists.txt, and compile the packages/rocksdb-rocksdb-4.11.2.zip dynamic libs.
+Then copy these files to the libs dir.
+
+Finally, use CMake and VS compile this project.
+
+## Windows Pre-built
+
+Following dependencies need to be installed before running the wallet:
+
+Windows binary require VC2017 runtime.
+Download from https://aka.ms/vs/15/release/vc_redist.x64.exe
+
+Universal C Runtime
+https://support.microsoft.com/en-us/help/2999226/update-for-universal-c-runtime-in-windows
