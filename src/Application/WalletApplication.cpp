@@ -103,7 +103,7 @@ WalletApplication::WalletApplication(int& _argc, char** _argv) : QApplication(_a
   m_systemTrayIcon(new QSystemTrayIcon(this)), m_applicationEventHandler(new ApplicationEventHandler(this)),
   m_optimizationManager(nullptr), m_mainWindow(nullptr), m_splash(nullptr),
   m_logWatcher(nullptr), m_isAboutToQuit(false) {
-  setApplicationName("bytecoinwallet");
+  setApplicationName("bbscoinwallet");
   setApplicationVersion(Settings::instance().getVersion());
   setQuitOnLastWindowClosed(false);
   setStyle(QStyleFactory::create("fusion"));
@@ -139,7 +139,7 @@ bool WalletApplication::init() {
   makeDataDir();
   WalletLogger::init(Settings::instance().getDataDir(), Settings::instance().hasDebugOption(), this);
   WalletLogger::info(tr("[Application] Initializing..."));
-  m_lockFile = new QLockFile(Settings::instance().getDataDir().absoluteFilePath("bytecoinwallet.lock"));
+  m_lockFile = new QLockFile(Settings::instance().getDataDir().absoluteFilePath("bbscoinwallet.lock"));
   QUrl paymentUrl = QUrl::fromUserInput(arguments().last());
   if (paymentUrl.scheme() != BYTECOIN_URI_SCHEME_NAME) {
     paymentUrl = QUrl();
@@ -151,9 +151,9 @@ bool WalletApplication::init() {
   }
 #endif
   if (!m_lockFile->tryLock()) {
-    WalletLogger::warning(tr("[Application] Bytecoin wallet already running"));
+    WalletLogger::warning(tr("[Application] BBSCoin wallet already running"));
     if (!paymentUrl.isValid()) {
-      QMessageBox::warning(nullptr, QObject::tr("Fail"), "Bytecoin wallet already running");
+      QMessageBox::warning(nullptr, QObject::tr("Fail"), "BBSCoin wallet already running");
     }
 
     return false;
@@ -250,9 +250,9 @@ bool WalletApplication::initCryptoNoteAdapter() {
       okButton->setText(QObject::tr("Ok"));
       dlg.addButton(okButton, QMessageBox::AcceptRole);
       dlg.setText(QObject::tr("The database is currently used by another application or service.\n"
-      "If you have bytecoind with non-default RPC port, you should terminate it and relaunch BytecoinWallet\n"
+      "If you have bytecoind with non-default RPC port, you should terminate it and relaunch BBSCoinWallet\n"
       "or\n"
-      "Set the Local deamon required port in BytecoinWallet Menu/Preferences/Connection settings."));
+      "Set the Local deamon required port in BBSCoinWallet Menu/Preferences/Connection settings."));
       dlg.exec();
       return false;
     }
