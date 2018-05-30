@@ -1,8 +1,9 @@
 ## OSX
 ```
 brew install qt5
+ln -s ../bbscoin/ cryptonote
 mkdir build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt/5.10.0_1
+cmake .. -DCMAKE_BUILD_TYPE=Release
 make
 ```
 
@@ -10,7 +11,7 @@ make
 ```
 ln -s ../bbscoin/ cryptonote
 mkdir build && cd build
-cmake ..
+cmake .. -DCMAKE_BUILD_TYPE=Release
 make
 ```
 
