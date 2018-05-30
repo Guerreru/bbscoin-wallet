@@ -28,7 +28,7 @@ Clone the bbscoin first,
 git clone https://github.com/bbscoin/bbscoin.git bbscoin
 ```
 
-Now, you should compile the BBSCoin dynamic libs without rocksdb first, comment "add_subdirectory(tests)" line in bbscoin/CMakeLists.txt, and compile the packages/rocksdb-rocksdb-4.11.2.zip dynamic libs.
+Now, you should compile the BBSCoin dynamic libs first.
 Then copy these files to the libs dir.
 
 Finally, use CMake and VS compile this project.

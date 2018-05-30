@@ -121,7 +121,7 @@ if (WIN32)
       System
       Transfers
       Wallet
-      rocksdblib
+      rocksdb
       miniupnpc
       Qt5::Widgets
       Qt5::Gui
