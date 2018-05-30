@@ -9,6 +9,11 @@ make
 
 ## Ubuntu
 ```
+sudo apt-get install build-essential libboost-all-dev git cmake qtbase5-dev
+git clone https://github.com/bbscoin/bbscoin.git
+cd ..
+git clone https://github.com/bbscoin/bbscoin-wallet.git
+cd bbscoin-wallet
 ln -s ../bbscoin/ cryptonote
 mkdir build && cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release
