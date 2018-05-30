@@ -309,14 +309,17 @@ else()
     set(QTMAIN Qt5::WinMain)
 
   elseif (UNIX)
-
+    execute_process(
+      COMMAND cmake ${CMAKE_CURRENT_SOURCE_DIR}/external/rocksdb -DWITH_GFLAGS=0 -B${PROJECT_BINARY_DIR}/rocksdb
+    )
+    set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "${PROJECT_BINARY_DIR}/rocksdb/librocksdb.a")
     add_custom_target(
        rocksdb
-       COMMAND make static_lib -Wno-undef -Wno-unused-result -Wno-unused-value
-       WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/cryptonote/external/rocksdb
+       COMMAND make rocksdb
+       WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/rocksdb
     )
     add_library(rocksdblib STATIC IMPORTED GLOBAL)
-    set_target_properties(rocksdblib PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/cryptonote/external/rocksdb/librocksdb.a)
+    set_target_properties(rocksdblib PROPERTIES IMPORTED_LOCATION ${PROJECT_BINARY_DIR}/rocksdb/librocksdb.a)
     add_dependencies(rocksdblib rocksdb)
 
     set(CRYPTONOTE_SOURCES ${CRYPTONOTE_SOURCES} cryptonote/external/miniupnpc/minissdpc.c)
