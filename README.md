@@ -1,6 +1,7 @@
 ## OSX
 ```
 brew install qt5
+ln -s ../bbscoin/ cryptonote
 mkdir build && cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release
 make
