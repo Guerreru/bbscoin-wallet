@@ -310,7 +310,7 @@ else()
 
   elseif (UNIX)
     execute_process(
-      COMMAND cmake ${CMAKE_CURRENT_SOURCE_DIR}/external/rocksdb -DWITH_GFLAGS=0 -B${PROJECT_BINARY_DIR}/rocksdb
+      COMMAND cmake ${CMAKE_CURRENT_SOURCE_DIR}/cryptonote/external/rocksdb -DWITH_GFLAGS=0 -B${PROJECT_BINARY_DIR}/rocksdb
     )
     set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "${PROJECT_BINARY_DIR}/rocksdb/librocksdb.a")
     add_custom_target(
@@ -385,3 +385,50 @@ else()
   qt5_use_modules(${PROJECT_NAME} Widgets Gui Network)
 
 endif()
+
+# Installation
+set(CPACK_PACKAGE_NAME ${CN_PROJECT_NAME})
+set(CPACK_PACKAGE_VERSION ${CN_VERSION})
+set(CPACK_PACKAGE_VENDOR "BBSCoin")
+set(CPACK_PACKAGE_CONTACT "https://www.bbscoin.xyz")
+set(CPACK_STRIP_FILES ON)
+if (APPLE)
+    set(CPACK_GENERATOR DragNDrop)
+    install(TARGETS ${PROJECT_NAME} BUNDLE DESTINATION .)
+    set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}")
+elseif (UNIX)
+    find_program(RPMBUILD rpmbuild)
+
+    install(PROGRAMS build/${PROJECT_NAME} DESTINATION bin
+    PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+    install(FILES src/bbscoinwallet.desktop DESTINATION share/applications)
+    install(FILES src/images/bbscoin.png DESTINATION share/pixmaps RENAME bbscoin.png)
+
+    if (NOT RPMBUILD)
+        set(CPACK_GENERATOR DEB)
+        set(CPACK_DEBIAN_PACKAGE_NAME ${CPACK_PACKAGE_NAME})
+        set(CPACK_SYSTEM_NAME 64-bit)
+        set(CPACK_DEBIAN_PACKAGE_MAINTAINER "${CPACK_PACKAGE_VENDOR} <dev@bbscoin.xyz>")
+        set(CPACK_DEBIAN_PACKAGE_SECTION Office)
+        set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+        set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "BBSCoin Wallet
+A cryptocurrency for exchanging virtual credits from forums and websites")
+set(CPACK_PACKAGE_FILE_NAME "${CPACK_DEBIAN_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}${CPACK_SYSTEM_NAME}")
+    else()
+        set(CPACK_GENERATOR RPM)
+        set(CPACK_SYSTEM_NAME x86_64)
+        set(CPACK_RPM_PACKAGE_RELEASE ${CPACK_PACKAGE_VERSION})
+        set(CPACK_RPM_PACKAGE_LICENSE "MIT")
+        set(CPACK_RPM_PACKAGE_GROUP Office)
+        set(CPACK_RPM_PACKAGE_REQUIRES "qt5-qtbase >= 5.3.2, qt5-qtbase-gui >= 5.3.2")
+        set(CPACK_RPM_PACKAGE_SUMMARY "BBSCoin Wallet")
+        set(CPACK_RPM_PACKAGE_DESCRIPTION "BBSCoin Wallet
+A cryptocurrency for exchanging virtual credits from forums and websites")
+set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}${CPACK_SYSTEM_NAME}")
+    endif ()
+elseif (WIN32)
+  install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION .)
+  set(CPACK_GENERATOR ZIP)
+endif (APPLE)
+
+include(CPack)
