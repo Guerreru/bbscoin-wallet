@@ -1,6 +1,9 @@
 ## OSX
 ```
 brew install qt5
+brew link --force qt5
+ln -s /usr/local/Cellar/qt/5.11.0/mkspecs /usr/local/mkspecs
+ln -s /usr/local/Cellar/qt/5.11.0/plugins /usr/local/plugins
 ln -s ../bbscoin/ cryptonote
 mkdir build && cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release
