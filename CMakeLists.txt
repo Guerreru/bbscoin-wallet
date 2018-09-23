@@ -218,9 +218,8 @@ else()
     cryptonote/src/crypto/random.c
     cryptonote/src/crypto/skein.c
     cryptonote/src/crypto/slow-hash.c
-    cryptonote/src/crypto/slow-hash.cpp
+    cryptonote/src/crypto/aesb.c
     cryptonote/src/crypto/tree-hash.c
-    cryptonote/src/crypto/cn_context.cpp
     cryptonote/src/CryptoNoteCore/*.cpp
     cryptonote/src/CryptoNoteProtocol/*.cpp
     cryptonote/src/Daemon/*.cpp
