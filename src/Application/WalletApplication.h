@@ -71,6 +71,7 @@ private:
   void makeDataDir();
   void setupTheme();
   bool initCryptoNoteAdapter();
+  bool checkNewVersion();
   void deinitCryptoNoteAdapter();
   void reinitCryptoNoteAdapter();
   void initUi();

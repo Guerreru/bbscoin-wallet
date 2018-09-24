@@ -26,6 +26,11 @@
 #include <QRegularExpression>
 #include <QStyleFactory>
 #include <QTcpServer>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QObject>
+#include <QTimer>
+#include <QNetworkReply>
 
 #ifdef Q_OS_WIN
 #define NOMINMAX
@@ -117,6 +122,45 @@ WalletApplication::~WalletApplication() {
   }
 }
 
+bool WalletApplication::checkNewVersion() {
+
+	QString currentVersion = "4.0.0";
+
+	QTimer newVerTimer;
+	newVerTimer.setInterval(3000);
+	newVerTimer.setSingleShot(true);
+	QNetworkAccessManager manager;
+	QNetworkRequest request;
+	request.setUrl(QUrl("https://bbscoin.xyz/data/wallet_version.txt"));
+	QNetworkReply *pReply = manager.get(request);
+	QEventLoop loop;
+	connect(&newVerTimer, &QTimer::timeout, &loop, &QEventLoop::quit);
+	connect(pReply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+	newVerTimer.start();
+	loop.exec();
+	if (newVerTimer.isActive()) {
+		newVerTimer.stop();
+		if (pReply->error() == QNetworkReply::NoError) {
+			QVariant variant = pReply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+			int nStatusCode = variant.toInt();
+			if (nStatusCode == 200) {
+				QByteArray responseData = pReply->readAll();
+				QString verionRemote = QString(responseData);
+				if (currentVersion != verionRemote) {
+					QMessageBox::information(nullptr, QObject::tr("New Version"), "There is a new version wallet, please download it from https://bbscoin.xyz");
+				}
+			}
+		}
+	}
+	else {
+		disconnect(pReply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+		pReply->abort();
+		pReply->deleteLater();
+	}
+
+	return true;
+}
+
 bool WalletApplication::init() {
   qRegisterMetaType<quintptr>("quintptr");
   setupTheme();
@@ -134,6 +178,8 @@ bool WalletApplication::init() {
     return false;
   }
 #endif
+
+  checkNewVersion();
 
   Settings::instance().addObserver(this);
   makeDataDir();
