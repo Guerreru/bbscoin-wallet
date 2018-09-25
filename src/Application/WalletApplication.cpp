@@ -124,14 +124,14 @@ WalletApplication::~WalletApplication() {
 
 bool WalletApplication::checkNewVersion() {
 
-	QString currentVersion = "4.0.0";
+	quint32 currentVersion = 401;
 
 	QTimer newVerTimer;
 	newVerTimer.setInterval(3000);
 	newVerTimer.setSingleShot(true);
 	QNetworkAccessManager manager;
 	QNetworkRequest request;
-	request.setUrl(QUrl("https://bbscoin.xyz/data/wallet_version.txt"));
+	request.setUrl(QUrl("https://bbscoin.xyz/data/wallet_version_number.txt"));
 	QNetworkReply *pReply = manager.get(request);
 	QEventLoop loop;
 	connect(&newVerTimer, &QTimer::timeout, &loop, &QEventLoop::quit);
@@ -146,7 +146,7 @@ bool WalletApplication::checkNewVersion() {
 			if (nStatusCode == 200) {
 				QByteArray responseData = pReply->readAll();
 				QString verionRemote = QString(responseData);
-				if (currentVersion != verionRemote) {
+				if (verionRemote.toUInt() > currentVersion) {
 					QMessageBox::information(nullptr, QObject::tr("New Version"), "There is a new version wallet, please download it from https://bbscoin.xyz");
 				}
 			}
