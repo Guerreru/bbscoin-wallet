@@ -75,6 +75,9 @@ if (WIN32)
   qt5_wrap_ui(UIS ${FORMS})
   qt5_add_resources(RCC ${QRC})
 
+  if(APPLE)
+    set(CMAKE_OSX_DEPLOYMENT_TARGET 10.13)
+  endif()
 
   if(MSVC)
     add_definitions(/D_CRT_SECURE_NO_WARNINGS /D_WIN32_WINNT=0x0600)
