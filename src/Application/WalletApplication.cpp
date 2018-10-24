@@ -124,7 +124,7 @@ WalletApplication::~WalletApplication() {
 
 bool WalletApplication::checkNewVersion() {
 
-	quint32 currentVersion = 412;
+	quint32 currentVersion = 420;
 
 	QTimer newVerTimer;
 	newVerTimer.setInterval(3000);
