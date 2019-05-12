@@ -80,6 +80,7 @@ if (WIN32)
   endif()
 
   if(MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8")
     add_definitions(/D_CRT_SECURE_NO_WARNINGS /D_WIN32_WINNT=0x0600)
     include_directories(
         bbscoin/src/Platform/msc
